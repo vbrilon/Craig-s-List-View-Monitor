@@ -17,6 +17,8 @@ if (!$q->param) { exit }
 
 # This is set up for 2 items -- obviously customize as needed for however many items you're tracking
 
+# The image name should be an absolute or a relative path to a jpg file 
+
 my $items = {
 	1 => {'image'=>'YOUR IMAGE NAME',
 				'widget'=> 'YOUR WIDGET ID'},
