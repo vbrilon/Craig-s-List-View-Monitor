@@ -11,7 +11,7 @@ use Data::Dumper;
 my $q = new CGI;
 my $dbm = tie %o, 'MLDBM', 'imagedb', O_CREAT|O_RDWR, 0640 or die $!;
 my $json = new JSON;
-my $api = '30vxksjekc2hzfgw8f4csonxcpazstifj4scuc1i3og89w8fca';
+my $api = '';
 my $ua = LWP::UserAgent->new;
 
 if (!$q->param) { exit }
