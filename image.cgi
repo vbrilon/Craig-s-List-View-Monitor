@@ -17,13 +17,18 @@ if (!$q->param) { exit }
 
 # This is set up for 2 items -- obviously customize as needed for however many items you're tracking
 
+# The key for each item should be the number that's matched that's passed into the script
 # The image name should be an absolute or a relative path to a jpg file 
 
 my $items = {
-	1 => {'image'=>'YOUR IMAGE NAME',
-				'widget'=> 'YOUR WIDGET ID'},
-	2 => {'image'=>'YOUR IMAGE NAME',
-				'widget'=> 'YOUR WIDGET ID'},
+	1 => {
+		'image'=>'YOUR IMAGE NAME',
+		'widget'=> 'YOUR WIDGET ID'
+	},
+	2 => {
+		'image'=>'YOUR IMAGE NAME',
+		'widget'=> 'YOUR WIDGET ID'
+	},
 };
 
 
