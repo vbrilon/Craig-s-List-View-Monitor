@@ -6,7 +6,6 @@ use MLDBM;
 use Fcntl;
 use LWP;
 use JSON;
-use Data::Dumper;
 
 my $q = new CGI;
 my $dbm = tie %o, 'MLDBM', 'imagedb', O_CREAT|O_RDWR, 0640 or die $!;
@@ -16,21 +15,20 @@ my $ua = LWP::UserAgent->new;
 
 if (!$q->param) { exit }
 
-my %images = (
-	1 => 'tv.jpg',
-	2 => 'guitar.jpg'
-);
+my $items = {
+	1 => {'image'=>'YOUR IMAGE NAME',
+				'widget'=> 'YOUR WIDGET ID'},
+	2 => {'image'=>'YOUR IMAGE NAME',
+				'widget'=> 'YOUR WIDGET ID'},
+};
 
-my %widgets = (
-	1 => 'https://push.ducksboard.com/values/11657/',
-	2 => 'https://push.ducksboard.com/values/11658/'
-);
 
-my $img = read_file($images{$q->param('image')}, binmode => ':raw');
+
 $count = $o{$q->param('image')}++;
-
 my $data = $json->encode({'value'=>$count});
-my $req = HTTP::Request->new(POST, $widgets{$q->param('image')});
+my $img = read_file($items->{$q->param('image')}->{'image'}, binmode => ':raw');
+my $url = "https://push.ducksboard.com/values/" . $items->{$q->param('image')}->{'widget'};
+my $req = HTTP::Request->new(POST, );
 $req->content_type('application/json');
 $req->authorization_basic($api, 'nottherealpassword');
 $req->content($data);
@@ -40,6 +38,5 @@ print $q->header(
 	type => 'image/jpg',
 	content_length=>length($img)
 );
-
 
 print $img;
