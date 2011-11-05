@@ -27,8 +27,8 @@ my $items = {
 $count = $o{$q->param('image')}++;
 my $data = $json->encode({'value'=>$count});
 my $img = read_file($items->{$q->param('image')}->{'image'}, binmode => ':raw');
-my $url = "https://push.ducksboard.com/values/" . $items->{$q->param('image')}->{'widget'};
-my $req = HTTP::Request->new(POST, );
+my $url = "https://push.ducksboard.com/values/" . $items->{$q->param('image')}->{'widget'} . "/";
+my $req = HTTP::Request->new(POST, $url);
 $req->content_type('application/json');
 $req->authorization_basic($api, 'nottherealpassword');
 $req->content($data);
