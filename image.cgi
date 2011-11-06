@@ -10,7 +10,7 @@ use JSON;
 my $q = new CGI;
 my $dbm = tie %o, 'MLDBM', 'imagedb', O_CREAT|O_RDWR, 0640 or die $!;
 my $json = new JSON;
-my $api = '';
+my $api = 'YOUR API KEY HERE';
 my $ua = LWP::UserAgent->new;
 
 if (!$q->param) { exit }
